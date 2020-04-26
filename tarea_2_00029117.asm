@@ -1,30 +1,34 @@
 	org 100h
 	
 section .text
-
+		;calculando promedio
 		mov ax, 0h
 		mov bx, 0h
-		mov cx, 0h
-		mov ax, 2h
+		mov bx, 2h
+		add ax, bx
 		mov bx, 9h
-		mov cx, 1h
-		mov dx, 5h ; divisor
-		add ax,bx
-		add ax, cx
-		add ax, cx
-		mov cx, 0h
-		mov cx, 7h
-		add ax, cx
-		div dx
-		mov [220h], ax ;cociente
-		mov [222h], dx ;residuo
+		add ax, bx
+		mov bx, 1h
+		add ax, bx
+		add ax, bx
+		mov bx, 7h
+		add ax, bx
+		mov bx, 5h
+		div bx
 
+		;Limpiando antes de usar otra vez
+		mov cx, 0h
 		mov di, 0d
-		mov cx, [len]
-lupi:	mov bl, [comnt+di]
-		mov [di+200h],bl
+		mov cx, 11d
+
+		;imprimiendo valores
+		mov di, 0d
+		mov cx, 10d
+
+euno:	mov bx, [comnt+di]
+		mov [di+200h],bx
 		inc di
-		loop lupi
+		loop euno
 
 		int 20h
 
