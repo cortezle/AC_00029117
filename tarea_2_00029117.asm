@@ -51,7 +51,34 @@ edos:	mov [di+210h],ax
 		inc di
 		loop edos
 
-		
+		;Ejercicio 3
+
+		;Limpiando valores
+		mov ax, 0h
+		mov bx, 0h
+		mov cx, 0h
+		mov dx, 0d
+
+		;valores triviales
+		mov bx, 0h
+		mov dx, 1h
+		mov cx, 000dh
+
+		mov di, 0d
+
+		;ingresando valores triviales
+		mov [di+220h],bx
+		inc di
+		mov [di+220h],dx
+		inc di
+
+etres:	mov ax, bx
+		add ax,dx
+		mov [di+220h],ax
+		inc di
+		mov bx,dx
+		mov dx,ax
+		loop etres
 		
 		int 20h
 
