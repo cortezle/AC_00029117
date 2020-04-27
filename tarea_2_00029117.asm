@@ -44,12 +44,20 @@ euno:	mov bx, [comnt+di]
 		;Asignando valores claves
 		mov ax, 4h ;inicio 4 casos
 		mov bx, 2h ;se duplican los casos
-		mov cx, 000bh ;11 resultados
+		;mov cx, 000bh ;11 resultados
 
-edos:	mov [di+210h],ax
+edosA:	mov [di+210h],ax
 		mul bx
 		inc di
-		loop edos
+		cmp ax, 256d
+		jb edosA
+
+edosb:	mov [di+210h],ax
+		mul bx
+		inc di
+		inc di
+		cmp di, 15d
+		jb edosb
 
 		;Ejercicio 3
 
