@@ -6,6 +6,7 @@ section .text
 	call 	cursor
 	call 	phrase
 	call 	phrase2
+	call 	phrase3
 	call	kbwait
 
 	int 	20h
@@ -66,10 +67,27 @@ lupi2:	mov 	cl, [msg2+di-20d]
 	jb	lupi2
 	ret
 
+m_cursr3:mov 	ah, 02h
+	mov 	dx, di  ; columna
+	mov 	dh, 19d ; fila
+	mov 	bh, 0h
+	int 	10h
+	ret
+
+phrase3:	mov 	di, 25d
+lupi3:	mov 	cl, [msg3+di-25d]
+	call    m_cursr3
+	call 	w_char
+	inc	di
+	cmp 	di, len3
+	jb	lupi3
+	ret
 
 section .data
 
 msg	db 	"There is a lady who assures "
 len 	equ	$-msg+29d
-msg2	db 	"That all that "
+msg2	db 	"That all that Gliters is gold"
 len2 	equ	$-msg2+20d
+msg3	db 	"And she's buying a stairway to heaven "
+len3 	equ	$-msg3+25d
