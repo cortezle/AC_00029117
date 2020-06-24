@@ -22,17 +22,17 @@ section .text
 	mov	si, 45d ; X -> Columna
 	mov 	di, 25d ; Y -> Fila
 	call 	linea_v2
+		
+	mov	si, 75d ; X -> Columna
+	mov 	di, 65d ; Y -> Fila
+	call 	linea_v
 
 	mov	si, 25d ; X -> Columna
 	mov 	di, 25d ; Y -> Fila
-	call 	linea_aux
-	call 	kb		; Utilizamos espera de alguna tecla
+	call 	linea_aux;horizontal
+	call 	kb		
 
-	mov	si, 21d ; X -> Columna
-	mov 	di, 15d ; Y -> Fila
-	call 	linea_vaux
-	call 	kb		; Utilizamos espera de alguna tecla
-	int 	20h
+
 
 grafico:mov	ah, 00h
 	mov	al, 13h
@@ -55,6 +55,7 @@ lupi_h:	mov 	cx, 0d ; Columna
 	ret
 
 
+;horizontal
 linea_aux: 
 lupi_aux:	mov 	cx, 0d ; Columna 
 	add 	cx, si
@@ -74,6 +75,18 @@ lupi_v:	mov 	cx, si ; Columna
 	cmp 	di, 65d
 	jne 	lupi_v
 	ret
+
+
+linea_v3:
+lupi_v3:	mov 	cx, si ; Columna 
+	mov	dx, 0d ; Fila
+	add 	dx, di
+	call 	pixel
+	inc 	di
+	cmp 	di, 55d
+	jne 	lupi_v3
+	ret
+
 
 linea_v:
 lupi_v2:	mov 	cx, si ; Columna 
